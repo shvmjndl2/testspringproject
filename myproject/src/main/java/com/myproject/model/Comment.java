@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "ideator.comments")
 public class Comment {
@@ -23,14 +25,16 @@ public class Comment {
 	@Column(name = "created_date")
 	private Timestamp creationTimestamp;
 	
-	@Column(name = "user_id")
-	private Long userId;
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "user_id")
+	private User userId;
 	
 	@Column(name = "trxn_id")
 	private Long transactionId;
 	
-	@Column(name = "post_id")
-	private Long postId;
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "post_id")
+	private Post postId;
 
 	/**
 	 * 
@@ -99,14 +103,14 @@ public class Comment {
 	/**
 	 * @return the userId
 	 */
-	public Long getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(Long userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 
@@ -127,14 +131,14 @@ public class Comment {
 	/**
 	 * @return the postId
 	 */
-	public Long getPostId() {
+	public Post getPostId() {
 		return postId;
 	}
 
 	/**
 	 * @param postId the postId to set
 	 */
-	public void setPostId(Long postId) {
+	public void setPostId(Post postId) {
 		this.postId = postId;
 	}
 

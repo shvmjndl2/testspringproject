@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "ideator.post")
 public class Post {
@@ -23,8 +24,9 @@ public class Post {
 	@Column(name = "created_date")
 	private Timestamp creationTimestamp;
 	
+	@ManyToOne(optional = false)
 	@Column(name = "user_id")
-	private Long userId;
+	private User userId;
 	
 	@Column(name = "trxn_id")
 	private Long transactionId;
@@ -99,14 +101,14 @@ public class Post {
 	/**
 	 * @return the userId
 	 */
-	public Long getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(Long userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 

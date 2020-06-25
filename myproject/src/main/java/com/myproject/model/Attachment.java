@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "ideator.attachments")
 public class Attachment {
@@ -20,8 +22,9 @@ public class Attachment {
 	@Column(name = "trxn_id")
 	private Long transactionId;
 
-	@Column(name = "user_id")
-	private Long userId;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User userId;
 	
 	@Column(name = "content_type")
 	private String contentType;
@@ -85,14 +88,14 @@ public class Attachment {
 	/**
 	 * @return the userId
 	 */
-	public Long getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(Long userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 
